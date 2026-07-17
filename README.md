@@ -34,6 +34,9 @@ attributable to the construct under test alone.
     ├── events-contract/      #   (compiled binding, deploy fn, bench plan)
     ├── hashing-contract/
     ├── xcall-contract/       # TWO contracts: caller seals a ref to target
+    ├── xcontract-events/     # NOT a benchmark: cross-contract call + MIP-0002
+    │   └── knowledge-base/   #   event spike moved from the protocol repo; its
+    │                         #   knowledge-base/ is the primary artifact
     └── integration-tests/
         ├── src/              # session (facade + preflight), run-bench driver
         ├── tests/            # baseline / events / hashing / xcall benchmarks

@@ -20,6 +20,7 @@
     "compile:zk:hashing": "yarn workspace @midnight-experiments/hashing-contract run compile:zk",
     "compile:zk:xcall": "yarn workspace @midnight-experiments/xcall-contract run compile:zk",
     "compile:zk:xcall-with-payment": "yarn workspace @midnight-experiments/xcall-with-payment-contract run compile:zk",
+    "compile:zk:xcontract-events": "yarn workspace @midnight-experiments/xcontract-events run compile:zk",
     "bench:baseline": "yarn workspace @midnight-experiments/integration-tests run bench:baseline",
     "bench:events": "yarn workspace @midnight-experiments/integration-tests run bench:events",
     "bench:hashing": "yarn workspace @midnight-experiments/integration-tests run bench:hashing",
