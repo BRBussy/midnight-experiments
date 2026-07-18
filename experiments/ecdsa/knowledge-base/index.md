@@ -24,6 +24,9 @@ ZKIR v3 proving.
   little-endian casts vs big-endian digests, signature malleability).
 - [proving-stack.md](proving-stack.md): what the compile and proving pipeline
   needs (ZKIR v3 backend flag, component versions, key sizes and timings).
+- [mpc-compatibility.md](mpc-compatibility.md): confirmation that signatures
+  produced by the sig-net MPC (`sig-net/mpc`, cait-sith threshold ECDSA)
+  verify with `secp256k1EcdsaVerify`, convention by convention.
 - [signet-upgrade.md](signet-upgrade.md): the concrete change map for
   `sig-net/midnight-integration` (contract, message format, MPC responder,
   deploy, stack versions).
