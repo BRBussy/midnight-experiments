@@ -14,8 +14,14 @@ import {
   EXPECTED_EVENT_COUNTS,
 } from "@midnight-experiments/events-contract";
 
-import { activeCircuits, benchContract, timedDeploy } from "../src/run-bench.ts";
-import { BENCH_REPS, openBenchSession, type BenchSession } from "../src/session.ts";
+import {
+  activeCircuits,
+  benchContract,
+  BENCH_REPS,
+  openBenchSession,
+  timedDeploy,
+  type BenchSession,
+} from "@midnight-experiments/test-harness-benchmark";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 

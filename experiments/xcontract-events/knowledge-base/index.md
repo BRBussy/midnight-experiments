@@ -4,7 +4,7 @@
 > **cross-contract calls** and **contract events (MIP-0002)** on the exact toolchain this
 > repo pins. Official docs for both features are immature/contradictory as of 2026-07; the
 > facts here are **verified empirically** against the real compiler and a live local stack,
-> not copied from docs. The `packages/xcontract-events` package IS the worked example —
+> not copied from docs. The `experiments/xcontract-events` package IS the worked example —
 > every claim below has runnable code behind it.
 >
 > **Audience: agents.** Read [`index.md`](index.md) (this file) first for the TL;DR + version
@@ -16,7 +16,7 @@
 
 Verified on a live local stack (`docker-compose.yaml`: node 2.0.0-rc.3, indexer
 4.4.0-pre-alpha.16 contract-events build, proof-server 9.0.0-rc.3) by
-[`tests/integrationTest.test.ts`](../tests/integrationTest.test.ts) — **12/12 tests pass**:
+[`integration-tests/tests/integration-test.test.ts`](../integration-tests/tests/integration-test.test.ts) — **12/12 tests pass**:
 
 1. Deploy token contract **B** (callee, emits an event).
 2. Deploy vault contract **A** (caller), sealing a reference to B.
@@ -74,13 +74,13 @@ lines (pre-release: `beta`/`rc`, so expect rough edges). See [`toolchain.md`](to
 
 | Path | What it demonstrates |
 |---|---|
-| [`src/token.compact`](../src/token.compact) | Contract **B**: emits a custom event (`Misc` + `serialize`d struct). |
-| [`src/vault.compact`](../src/vault.compact) | Contract **A**: external `contract` decl + `sealed ledger` ref + cross-contract call. |
-| [`src/providers.ts`](../src/providers.ts) | Provider set with a **two-contract** proof provider (the crux). |
-| [`src/deploy.ts`](../src/deploy.ts) | `deployToken()` / `deployVault(tokenAddr)`. |
+| [`src/token.compact`](../contract/src/token.compact) | Contract **B**: emits a custom event (`Misc` + `serialize`d struct). |
+| [`src/vault.compact`](../contract/src/vault.compact) | Contract **A**: external `contract` decl + `sealed ledger` ref + cross-contract call. |
+| [`src/providers.ts`](../contract/src/providers.ts) | Provider set with a **two-contract** proof provider (the crux). |
+| [`src/deploy.ts`](../contract/src/deploy.ts) | `deployToken()` / `deployVault(tokenAddr)`. |
 | [`tests/xcontract-events.test.ts`](../tests/xcontract-events.test.ts) | Offline in-process simulator checks (7 tests). |
-| [`tests/integrationTest.test.ts`](../tests/integrationTest.test.ts) | Live e2e incl. reading the event off the indexer (5 steps). |
-| [`../../lib/src/midnight-providers.ts`](../../lib/src/midnight-providers.ts) | `createCrossContractProofServerProvider` (lib helper added for this). |
+| [`integration-tests/tests/integration-test.test.ts`](../integration-tests/tests/integration-test.test.ts) | Live e2e incl. reading the event off the indexer (5 steps). |
+| [`../../../packages/lib/src/midnight-providers.ts`](../../../packages/lib/src/midnight-providers.ts) | `createCrossContractProofServerProvider` (lib helper added for this). |
 
 ## External references (authoritative-ish, but often ahead of / behind the shipped compiler)
 

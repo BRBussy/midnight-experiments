@@ -1,0 +1,29 @@
+{
+  "name": "@midnight-experiments/test-harness-benchmark",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Benchmark harness on top of @midnight-experiments/test-harness: the bench session (wallet session + JSONL recorder), the generic instrumented-prover bench driver, the shared vitest config (run id global setup, serial files, long timeouts), and the report renderer (`yarn report` at the root).",
+  "exports": {
+    ".": "./src/index.ts",
+    "./vitest": "./src/vitest.ts",
+    "./global-setup": "./src/global-setup.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests",
+    "report": "tsx scripts/report.ts"
+  },
+  "dependencies": {
+    "@midnight-experiments/lib": "*",
+    "@midnight-experiments/test-harness": "*",
+    "@midnight-ntwrk/midnight-js": "5.0.0-beta.4",
+    "@midnight-ntwrk/midnight-js-node-zk-config-provider": "5.0.0-beta.4",
+    "vitest": "^4.1.9"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3"
+  }
+}

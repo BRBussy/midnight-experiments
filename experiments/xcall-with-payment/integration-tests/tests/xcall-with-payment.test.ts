@@ -32,8 +32,7 @@ import {
   targetManagedPath,
 } from "@midnight-experiments/xcall-with-payment-contract";
 
-import { benchContract, timedDeploy } from "../src/run-bench.ts";
-import { openBenchSession, type BenchSession } from "../src/session.ts";
+import { benchContract, openBenchSession, timedDeploy, type BenchSession } from "@midnight-experiments/test-harness-benchmark";
 
 /** All messages in an error's `cause` chain, joined — the runtime failure is nested two causes deep. */
 function causeChainMessages(error: unknown): string {

@@ -19,8 +19,14 @@ import {
   xcallBenchPlan,
 } from "@midnight-experiments/xcall-contract";
 
-import { activeCircuits, benchContract, timedDeploy } from "../src/run-bench.ts";
-import { BENCH_REPS, openBenchSession, type BenchSession } from "../src/session.ts";
+import {
+  activeCircuits,
+  benchContract,
+  BENCH_REPS,
+  openBenchSession,
+  timedDeploy,
+  type BenchSession,
+} from "@midnight-experiments/test-harness-benchmark";
 
 // The full plan, or the BENCH_CIRCUITS subset (single-experiment runs).
 const plan = activeCircuits(xcallBenchPlan);

@@ -44,7 +44,7 @@ import {
   vaultCompiledContract,
   Vault,
   VAULT_PRIVATE_STATE_ID,
-} from "../src/index.ts";
+} from "@midnight-experiments/xcontract-events-contract";
 
 const MINUTE = 60_000;
 

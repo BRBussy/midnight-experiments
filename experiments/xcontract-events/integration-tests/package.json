@@ -1,0 +1,24 @@
+{
+  "name": "@midnight-experiments/xcontract-events-integration-tests",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "End-to-end proof for the xcontract-events experiment on a live local stack: deploys token + vault, drives the cross-contract call, and reads the MIP-0002 event back off the indexer with an authenticated-ledger validity proof. Gated by RUN_INTEGRATION_TESTS; run `yarn compile:zk` in the contract package first.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests",
+    "test:integration": "RUN_INTEGRATION_TESTS=1 vitest run --bail 1 --disable-console-intercept tests/integration-test.test.ts"
+  },
+  "dependencies": {
+    "@midnight-experiments/xcontract-events-contract": "*",
+    "@midnight-ntwrk/midnight-js": "5.0.0-beta.4",
+    "@midnight-ntwrk/midnight-js-indexer-public-data-provider": "5.0.0-beta.4",
+    "@midnight-ntwrk/midnight-js-types": "5.0.0-beta.4",
+    "@sig-net/midnight-contract-deploy": "^0.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  }
+}

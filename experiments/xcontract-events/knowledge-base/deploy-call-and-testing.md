@@ -27,7 +27,7 @@ different wallet, set `DEPLOYER_SEED` (hex or mnemonic).
 
 ## Deploy flow (contracts are witness-less here)
 
-See [`src/deploy.ts`](../src/deploy.ts). Order matters: **deploy B (token) first**, then A
+See [`src/deploy.ts`](../contract/src/deploy.ts). Order matters: **deploy B (token) first**, then A
 (vault) with B's address.
 
 ```ts
@@ -72,7 +72,7 @@ const ledger = Token.ledger(st.data);                              // decode via
 
 ## The integration test
 
-[`tests/integrationTest.test.ts`](../tests/integrationTest.test.ts). Gated by
+[`integration-tests/tests/integration-test.test.ts`](../integration-tests/tests/integration-test.test.ts). Gated by
 `RUN_INTEGRATION_TESTS` (skips otherwise, so offline `yarn test` stays green). Single file,
 sequential steps sharing an `env` accumulator so re-runs can resume:
 
@@ -85,9 +85,9 @@ sequential steps sharing an `env` accumulator so re-runs can resume:
 Run it:
 ```bash
 docker compose up -d                       # from repo root, if not already up
-cd packages/xcontract-events
+cd experiments/xcontract-events/contract
 yarn compile:zk                          # generate proving/verifier keys for BOTH contracts
-yarn test:integration                    # RUN_INTEGRATION_TESTS=1 vitest run ... integrationTest.test.ts
+yarn test:integration                    # RUN_INTEGRATION_TESTS=1 vitest run ... integration-test.test.ts
 ```
 Set `XC_TOKEN_CONTRACT_ADDRESS` / `XC_VAULT_CONTRACT_ADDRESS` to skip deploys and reuse
 existing contracts (note: the `sequence == 0` assertion assumes a fresh token — see

@@ -397,9 +397,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@midnight-experiments/baseline-contract@npm:*, @midnight-experiments/baseline-contract@workspace:packages/baseline-contract":
+"@midnight-experiments/baseline-contract@npm:*, @midnight-experiments/baseline-contract@workspace:experiments/baseline/contract":
   version: 0.0.0-use.local
-  resolution: "@midnight-experiments/baseline-contract@workspace:packages/baseline-contract"
+  resolution: "@midnight-experiments/baseline-contract@workspace:experiments/baseline/contract"
   dependencies:
     "@midnight-experiments/lib": "npm:*"
     "@midnight-ntwrk/compact-runtime": "npm:0.18.0-rc.1"
@@ -409,47 +409,61 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@midnight-experiments/events-contract@npm:*, @midnight-experiments/events-contract@workspace:packages/events-contract":
+"@midnight-experiments/baseline-integration-tests@workspace:experiments/baseline/integration-tests":
   version: 0.0.0-use.local
-  resolution: "@midnight-experiments/events-contract@workspace:packages/events-contract"
-  dependencies:
-    "@midnight-experiments/lib": "npm:*"
-    "@midnight-ntwrk/compact-runtime": "npm:0.18.0-rc.1"
-    "@types/node": "npm:^26.1.0"
-    typescript: "npm:^6.0.3"
-    vitest: "npm:^4.1.9"
-  languageName: unknown
-  linkType: soft
-
-"@midnight-experiments/hashing-contract@npm:*, @midnight-experiments/hashing-contract@workspace:packages/hashing-contract":
-  version: 0.0.0-use.local
-  resolution: "@midnight-experiments/hashing-contract@workspace:packages/hashing-contract"
-  dependencies:
-    "@midnight-experiments/lib": "npm:*"
-    "@midnight-ntwrk/compact-runtime": "npm:0.18.0-rc.1"
-    "@types/node": "npm:^26.1.0"
-    typescript: "npm:^6.0.3"
-    vitest: "npm:^4.1.9"
-  languageName: unknown
-  linkType: soft
-
-"@midnight-experiments/integration-tests@workspace:packages/integration-tests":
-  version: 0.0.0-use.local
-  resolution: "@midnight-experiments/integration-tests@workspace:packages/integration-tests"
+  resolution: "@midnight-experiments/baseline-integration-tests@workspace:experiments/baseline/integration-tests"
   dependencies:
     "@midnight-experiments/baseline-contract": "npm:*"
-    "@midnight-experiments/events-contract": "npm:*"
-    "@midnight-experiments/hashing-contract": "npm:*"
-    "@midnight-experiments/lib": "npm:*"
-    "@midnight-experiments/xcall-contract": "npm:*"
-    "@midnight-experiments/xcall-with-payment-contract": "npm:*"
-    "@midnight-ntwrk/midnight-js": "npm:5.0.0-beta.4"
-    "@midnight-ntwrk/midnight-js-indexer-public-data-provider": "npm:5.0.0-beta.4"
-    "@midnight-ntwrk/midnight-js-node-zk-config-provider": "npm:5.0.0-beta.4"
-    "@midnight-ntwrk/midnight-js-protocol": "npm:5.0.0-beta.4"
-    "@midnight-ntwrk/midnight-js-types": "npm:5.0.0-beta.4"
+    "@midnight-experiments/test-harness-benchmark": "npm:*"
     "@types/node": "npm:^26.1.0"
-    tsx: "npm:^4.23.0"
+    typescript: "npm:^6.0.3"
+    vitest: "npm:^4.1.9"
+  languageName: unknown
+  linkType: soft
+
+"@midnight-experiments/events-contract@npm:*, @midnight-experiments/events-contract@workspace:experiments/events/contract":
+  version: 0.0.0-use.local
+  resolution: "@midnight-experiments/events-contract@workspace:experiments/events/contract"
+  dependencies:
+    "@midnight-experiments/lib": "npm:*"
+    "@midnight-ntwrk/compact-runtime": "npm:0.18.0-rc.1"
+    "@types/node": "npm:^26.1.0"
+    typescript: "npm:^6.0.3"
+    vitest: "npm:^4.1.9"
+  languageName: unknown
+  linkType: soft
+
+"@midnight-experiments/events-integration-tests@workspace:experiments/events/integration-tests":
+  version: 0.0.0-use.local
+  resolution: "@midnight-experiments/events-integration-tests@workspace:experiments/events/integration-tests"
+  dependencies:
+    "@midnight-experiments/events-contract": "npm:*"
+    "@midnight-experiments/test-harness-benchmark": "npm:*"
+    "@types/node": "npm:^26.1.0"
+    typescript: "npm:^6.0.3"
+    vitest: "npm:^4.1.9"
+  languageName: unknown
+  linkType: soft
+
+"@midnight-experiments/hashing-contract@npm:*, @midnight-experiments/hashing-contract@workspace:experiments/hashing/contract":
+  version: 0.0.0-use.local
+  resolution: "@midnight-experiments/hashing-contract@workspace:experiments/hashing/contract"
+  dependencies:
+    "@midnight-experiments/lib": "npm:*"
+    "@midnight-ntwrk/compact-runtime": "npm:0.18.0-rc.1"
+    "@types/node": "npm:^26.1.0"
+    typescript: "npm:^6.0.3"
+    vitest: "npm:^4.1.9"
+  languageName: unknown
+  linkType: soft
+
+"@midnight-experiments/hashing-integration-tests@workspace:experiments/hashing/integration-tests":
+  version: 0.0.0-use.local
+  resolution: "@midnight-experiments/hashing-integration-tests@workspace:experiments/hashing/integration-tests"
+  dependencies:
+    "@midnight-experiments/hashing-contract": "npm:*"
+    "@midnight-experiments/test-harness-benchmark": "npm:*"
+    "@types/node": "npm:^26.1.0"
     typescript: "npm:^6.0.3"
     vitest: "npm:^4.1.9"
   languageName: unknown
@@ -484,9 +498,38 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@midnight-experiments/xcall-contract@npm:*, @midnight-experiments/xcall-contract@workspace:packages/xcall-contract":
+"@midnight-experiments/test-harness-benchmark@npm:*, @midnight-experiments/test-harness-benchmark@workspace:packages/test-harness-benchmark":
   version: 0.0.0-use.local
-  resolution: "@midnight-experiments/xcall-contract@workspace:packages/xcall-contract"
+  resolution: "@midnight-experiments/test-harness-benchmark@workspace:packages/test-harness-benchmark"
+  dependencies:
+    "@midnight-experiments/lib": "npm:*"
+    "@midnight-experiments/test-harness": "npm:*"
+    "@midnight-ntwrk/midnight-js": "npm:5.0.0-beta.4"
+    "@midnight-ntwrk/midnight-js-node-zk-config-provider": "npm:5.0.0-beta.4"
+    "@types/node": "npm:^26.1.0"
+    tsx: "npm:^4.23.0"
+    typescript: "npm:^6.0.3"
+    vitest: "npm:^4.1.9"
+  languageName: unknown
+  linkType: soft
+
+"@midnight-experiments/test-harness@npm:*, @midnight-experiments/test-harness@workspace:packages/test-harness":
+  version: 0.0.0-use.local
+  resolution: "@midnight-experiments/test-harness@workspace:packages/test-harness"
+  dependencies:
+    "@midnight-experiments/lib": "npm:*"
+    "@midnight-ntwrk/midnight-js": "npm:5.0.0-beta.4"
+    "@midnight-ntwrk/midnight-js-indexer-public-data-provider": "npm:5.0.0-beta.4"
+    "@midnight-ntwrk/midnight-js-types": "npm:5.0.0-beta.4"
+    "@types/node": "npm:^26.1.0"
+    typescript: "npm:^6.0.3"
+    vitest: "npm:^4.1.9"
+  languageName: unknown
+  linkType: soft
+
+"@midnight-experiments/xcall-contract@npm:*, @midnight-experiments/xcall-contract@workspace:experiments/xcall/contract":
+  version: 0.0.0-use.local
+  resolution: "@midnight-experiments/xcall-contract@workspace:experiments/xcall/contract"
   dependencies:
     "@midnight-experiments/lib": "npm:*"
     "@midnight-ntwrk/compact-runtime": "npm:0.18.0-rc.1"
@@ -496,9 +539,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@midnight-experiments/xcall-with-payment-contract@npm:*, @midnight-experiments/xcall-with-payment-contract@workspace:packages/xcall-contract-with-payment":
+"@midnight-experiments/xcall-integration-tests@workspace:experiments/xcall/integration-tests":
   version: 0.0.0-use.local
-  resolution: "@midnight-experiments/xcall-with-payment-contract@workspace:packages/xcall-contract-with-payment"
+  resolution: "@midnight-experiments/xcall-integration-tests@workspace:experiments/xcall/integration-tests"
+  dependencies:
+    "@midnight-experiments/test-harness-benchmark": "npm:*"
+    "@midnight-experiments/xcall-contract": "npm:*"
+    "@types/node": "npm:^26.1.0"
+    typescript: "npm:^6.0.3"
+    vitest: "npm:^4.1.9"
+  languageName: unknown
+  linkType: soft
+
+"@midnight-experiments/xcall-with-payment-contract@npm:*, @midnight-experiments/xcall-with-payment-contract@workspace:experiments/xcall-with-payment/contract":
+  version: 0.0.0-use.local
+  resolution: "@midnight-experiments/xcall-with-payment-contract@workspace:experiments/xcall-with-payment/contract"
   dependencies:
     "@midnight-experiments/lib": "npm:*"
     "@midnight-ntwrk/compact-runtime": "npm:0.18.0-rc.1"
@@ -508,9 +563,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@midnight-experiments/xcontract-events@workspace:packages/xcontract-events":
+"@midnight-experiments/xcall-with-payment-integration-tests@workspace:experiments/xcall-with-payment/integration-tests":
   version: 0.0.0-use.local
-  resolution: "@midnight-experiments/xcontract-events@workspace:packages/xcontract-events"
+  resolution: "@midnight-experiments/xcall-with-payment-integration-tests@workspace:experiments/xcall-with-payment/integration-tests"
+  dependencies:
+    "@midnight-experiments/lib": "npm:*"
+    "@midnight-experiments/test-harness-benchmark": "npm:*"
+    "@midnight-experiments/xcall-with-payment-contract": "npm:*"
+    "@midnight-ntwrk/midnight-js": "npm:5.0.0-beta.4"
+    "@midnight-ntwrk/midnight-js-node-zk-config-provider": "npm:5.0.0-beta.4"
+    "@midnight-ntwrk/midnight-js-protocol": "npm:5.0.0-beta.4"
+    "@midnight-ntwrk/midnight-js-types": "npm:5.0.0-beta.4"
+    "@types/node": "npm:^26.1.0"
+    typescript: "npm:^6.0.3"
+    vitest: "npm:^4.1.9"
+  languageName: unknown
+  linkType: soft
+
+"@midnight-experiments/xcontract-events-contract@npm:*, @midnight-experiments/xcontract-events-contract@workspace:experiments/xcontract-events/contract":
+  version: 0.0.0-use.local
+  resolution: "@midnight-experiments/xcontract-events-contract@workspace:experiments/xcontract-events/contract"
   dependencies:
     "@midnight-experiments/lib": "npm:*"
     "@midnight-ntwrk/compact-runtime": "npm:0.18.0-rc.1"
@@ -523,6 +595,21 @@ __metadata:
     "@sig-net/midnight-contract-deploy": "npm:^0.0.4"
     "@types/node": "npm:^26.1.0"
     tsx: "npm:^4.23.0"
+    typescript: "npm:^6.0.3"
+    vitest: "npm:^4.1.9"
+  languageName: unknown
+  linkType: soft
+
+"@midnight-experiments/xcontract-events-integration-tests@workspace:experiments/xcontract-events/integration-tests":
+  version: 0.0.0-use.local
+  resolution: "@midnight-experiments/xcontract-events-integration-tests@workspace:experiments/xcontract-events/integration-tests"
+  dependencies:
+    "@midnight-experiments/xcontract-events-contract": "npm:*"
+    "@midnight-ntwrk/midnight-js": "npm:5.0.0-beta.4"
+    "@midnight-ntwrk/midnight-js-indexer-public-data-provider": "npm:5.0.0-beta.4"
+    "@midnight-ntwrk/midnight-js-types": "npm:5.0.0-beta.4"
+    "@sig-net/midnight-contract-deploy": "npm:^0.0.4"
+    "@types/node": "npm:^26.1.0"
     typescript: "npm:^6.0.3"
     vitest: "npm:^4.1.9"
   languageName: unknown

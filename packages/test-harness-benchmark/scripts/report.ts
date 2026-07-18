@@ -25,11 +25,11 @@ const reportFile = join(repoRoot, "reports", "REPORT.md");
 // ── static metrics ──────────────────────────────────────────────────────────
 
 const CONTRACTS: { experiment: string; contract: string; managedPath: string }[] = [
-  { experiment: "baseline", contract: "baseline", managedPath: "packages/baseline-contract/src/managed/baseline" },
-  { experiment: "events", contract: "events", managedPath: "packages/events-contract/src/managed/events" },
-  { experiment: "hashing", contract: "hashing", managedPath: "packages/hashing-contract/src/managed/hashing" },
-  { experiment: "xcall", contract: "caller", managedPath: "packages/xcall-contract/src/managed/caller" },
-  { experiment: "xcall", contract: "target", managedPath: "packages/xcall-contract/src/managed/target" },
+  { experiment: "baseline", contract: "baseline", managedPath: "experiments/baseline/contract/src/managed/baseline" },
+  { experiment: "events", contract: "events", managedPath: "experiments/events/contract/src/managed/events" },
+  { experiment: "hashing", contract: "hashing", managedPath: "experiments/hashing/contract/src/managed/hashing" },
+  { experiment: "xcall", contract: "caller", managedPath: "experiments/xcall/contract/src/managed/caller" },
+  { experiment: "xcall", contract: "target", managedPath: "experiments/xcall/contract/src/managed/target" },
 ];
 
 // ── dynamic records ─────────────────────────────────────────────────────────

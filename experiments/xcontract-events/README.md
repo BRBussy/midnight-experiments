@@ -27,30 +27,31 @@ calls"*).
 
 ## What's here
 
-- [`src/token.compact`](src/token.compact) — **contract B (callee)**. `deposit` bumps a
+- [`contract/src/token.compact`](contract/src/token.compact) — **contract B (callee)**. `deposit` bumps a
   counter and emits a **custom event** (`Misc` + a `serialize`d `DepositEvent` struct)
   carrying the `amount` that arrived through the call.
-- [`src/vault.compact`](src/vault.compact) — **contract A (caller)**. Declares B's surface
+- [`contract/src/vault.compact`](contract/src/vault.compact) — **contract A (caller)**. Declares B's surface
   with an external `contract Token { ... }` block, holds a `sealed ledger token: Token`
   reference, and calls `token.deposit(...)` cross-contract.
-- [`src/deploy.ts`](src/deploy.ts) — `deployToken()` then `deployVault(tokenAddress)`
+- [`contract/src/deploy.ts`](contract/src/deploy.ts) — `deployToken()` then `deployVault(tokenAddress)`
   (order matters: A is constructed with a reference to an already-deployed B).
-- [`src/providers.ts`](src/providers.ts) — provider sets + compiled-contract bindings.
+- [`contract/src/providers.ts`](contract/src/providers.ts) — provider sets + compiled-contract bindings.
   The vault's proof provider spans **both** contracts (see cross-contract note below).
-- [`tests/xcontract-events.test.ts`](tests/xcontract-events.test.ts) — **offline** in-process
+- [`contract/tests/xcontract-events.test.ts`](contract/tests/xcontract-events.test.ts) — **offline** in-process
   simulator confirmation (7 tests).
-- [`tests/integrationTest.test.ts`](tests/integrationTest.test.ts) — **live** e2e:
+- [`integration-tests/tests/integration-test.test.ts`](integration-tests/tests/integration-test.test.ts) — **live** e2e:
   deploy B → deploy A → call `depositViaVault` → assert B's ledger moved (the
   cross-contract call landed + emitted). Gated by `RUN_INTEGRATION_TESTS`.
 
 ```bash
-yarn compile        # both contracts, --skip-zk (fast)
-yarn compile:zk     # with proving/verifier keys — required to deploy & prove
-yarn test               # offline: unit tests run, integration test skips
+# from the repo root:
+yarn workspace @midnight-experiments/xcontract-events-contract compile      # both contracts, --skip-zk (fast)
+yarn compile:zk:xcontract-events    # with proving/verifier keys: required to deploy & prove
+yarn test                           # offline: unit tests run, integration test skips
 
 # live e2e (needs a running node + indexer + proof server, funded DEPLOYER_SEED):
-yarn compile:zk
-yarn test:integration
+yarn compile:zk:xcontract-events
+yarn test:integration:xcontract-events
 ```
 
 ## How to write each feature
@@ -117,11 +118,11 @@ transaction. The only extra wiring the app must do is give the **proof provider 
 spanning every contract in the call tree**, so proofs for the callee resolve too. lib's
 default `createProofServerProvider` registers a single contract; this package uses the new
 `createCrossContractProofServerProvider(url, [vaultZk, tokenZk])` (added to lib) instead —
-see [`src/providers.ts`](src/providers.ts).
+see [`contract/src/providers.ts`](contract/src/providers.ts).
 
 ## Live integration test
 
-[`tests/integrationTest.test.ts`](tests/integrationTest.test.ts) proves the whole thing
+[`integration-tests/tests/integration-test.test.ts`](integration-tests/tests/integration-test.test.ts) proves the whole thing
 on a real stack: deploy token (B) → deploy vault (A, referencing B) → `depositViaVault(4242)`
 → assert **B's ledger moved** (`depositCount +1`, `lastAmount == 4242`) and A's counter
 advanced. Because `depositViaVault` touches B's state only through the cross-contract call,

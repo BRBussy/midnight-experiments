@@ -1,7 +1,7 @@
 # Gotchas & non-obvious bugs
 
 Back to [`index.md`](index.md). **Read this before writing code.** Every item was hit during
-the research behind `packages/xcontract-events`. Each has an explicit anchor (`#1`, `#2`, …)
+the research behind `experiments/xcontract-events`. Each has an explicit anchor (`#1`, `#2`, …)
 that other KB files link to.
 
 Severity legend: 🔴 will block you / silently wrong · 🟡 confusing but recoverable · ⚪ noise.
@@ -41,7 +41,7 @@ proving provider property 'lookupKey' to be a function"* on every circuit-call p
 midnight-js's own `httpClientProvingProvider` (built against an earlier rc) returns only
 `check`/`prove`. Both lib proof-provider helpers graft `lookupKey` on. If you build a proof
 provider from scratch, do the same. See
-[`../../lib/src/midnight-providers.ts`](../../lib/src/midnight-providers.ts) (the comment on
+[`../../../packages/lib/src/midnight-providers.ts`](../../../packages/lib/src/midnight-providers.ts) (the comment on
 `createProofServerProvider`) and [`cross-contract-calls.md`](cross-contract-calls.md).
 
 <a id="5"></a>
@@ -60,7 +60,7 @@ Event **delivery** is only observable on a live node via the indexer (#13,
 - The **constructor argument** for a contract-typed field is `{ bytes: Uint8Array(32) }`, NOT
   a hex string. Convert: `{ bytes: Uint8Array.from(Buffer.from(stripHex(addrHex), "hex")) }`.
   Passing the hex string → `expected value of type contract Token[...] but received '…'`.
-  Helper: `contractAddressToReference` in [`src/deploy.ts`](../src/deploy.ts).
+  Helper: `contractAddressToReference` in [`src/deploy.ts`](../contract/src/deploy.ts).
 - `contractDependencies(locations, state)` wants a raw **`StateValue`**, which is
   `currentContractState.data.state` — you must **unwrap the `ChargedState`** (`.data` is a
   `ChargedState`, `.data.state` is the `StateValue`). Passing `.data` →
@@ -87,8 +87,8 @@ can't resolve the **callee's** verifier key. `makeKeyMaterialResolver`
 `ZKConfigRegistry` argument, so the fix is to pass a registry over **all** contracts into it.
 
 **Fix:** use `createCrossContractProofServerProvider(url, [callerZk, ...calleeZks])` (added in
-[`../../lib/src/midnight-providers.ts`](../../lib/src/midnight-providers.ts)); wired in
-[`src/providers.ts`](../src/providers.ts). Full analysis in
+[`../../../packages/lib/src/midnight-providers.ts`](../../../packages/lib/src/midnight-providers.ts)); wired in
+[`src/providers.ts`](../contract/src/providers.ts). Full analysis in
 [`cross-contract-calls.md`](cross-contract-calls.md) § "multi-contract proof provider".
 
 <a id="8"></a>
@@ -118,7 +118,7 @@ argument width is fixed at `Uint<16>` regardless of what you're counting. Use
 <a id="11"></a>
 ## 11. 🟡 The integration test's `sequence == 0` assertion assumes a fresh token
 
-[`tests/integrationTest.test.ts`](../tests/integrationTest.test.ts) deploys a fresh token per
+[`integration-tests/tests/integration-test.test.ts`](../integration-tests/tests/integration-test.test.ts) deploys a fresh token per
 run, so the first (only) deposit has `sequence == 0`. If you **resume** against a kept
 `XC_TOKEN_CONTRACT_ADDRESS`, `depositCount` (and thus `sequence`) will be > 0 and there will
 be multiple `Misc("deposit")` events. Relax to "an event with `amount == 4242` exists" for

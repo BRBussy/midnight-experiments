@@ -1,0 +1,25 @@
+{
+  "name": "@midnight-experiments/test-harness",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Test-only machinery shared by every experiment's integration tests: stack preflight (node + indexer + proof server reachability) and the deployer wallet session lifecycle (open, sync, close). Benchmark-specific instrumentation lives in @midnight-experiments/test-harness-benchmark on top of this.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@midnight-experiments/lib": "*",
+    "@midnight-ntwrk/midnight-js": "5.0.0-beta.4",
+    "@midnight-ntwrk/midnight-js-indexer-public-data-provider": "5.0.0-beta.4",
+    "@midnight-ntwrk/midnight-js-types": "5.0.0-beta.4"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  }
+}

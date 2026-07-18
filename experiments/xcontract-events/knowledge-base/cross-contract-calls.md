@@ -8,7 +8,7 @@ call tree carries a proof per contract. Introduced in midnight-js **v5.0.0**.
 
 ## The three pieces of Compact syntax (all verified compiling)
 
-From [`src/vault.compact`](../src/vault.compact) (contract A calling contract B):
+From [`src/vault.compact`](../contract/src/vault.compact) (contract A calling contract B):
 
 ```compact
 pragma language_version >= 0.25;
@@ -148,9 +148,9 @@ caller's provider, so `/check` can't resolve the **callee's** verifier key.
 **The fix** (this repo): a helper that builds the registry over **all** contracts and passes
 the *registry itself* into `httpClientProvingProvider` (its resolver special-cases
 `zkConfigProvider instanceof ZKConfigRegistry`, index.mjs:46). See
-[`../../lib/src/midnight-providers.ts`](../../lib/src/midnight-providers.ts)
+[`../../../packages/lib/src/midnight-providers.ts`](../../../packages/lib/src/midnight-providers.ts)
 `createCrossContractProofServerProvider` (line ~111). Used in
-[`src/providers.ts:107`](../src/providers.ts):
+[`src/providers.ts:107`](../contract/src/providers.ts):
 
 ```ts
 proofProvider: createCrossContractProofServerProvider(config.proofServerUrl, [
@@ -166,7 +166,7 @@ registry) onto the base `check`/`prove` provider. See [gotcha #4](gotchas.md#4).
 
 ### Provider set shape for a cross-contract caller
 
-From [`src/providers.ts` `buildVaultProviders`](../src/providers.ts):
+From [`src/providers.ts` `buildVaultProviders`](../contract/src/providers.ts):
 ```ts
 {
   privateStateProvider: levelPrivateStateProvider({ ...package-scoped store names... }),
@@ -191,5 +191,5 @@ moving is the proof the call landed on-chain**:
   events back". The event is emitted *inside* the cross-contract call, so its presence
   double-confirms the call executed B's circuit under real proving.
 
-All of this is in [`tests/integrationTest.test.ts`](../tests/integrationTest.test.ts) and passes
+All of this is in [`integration-tests/tests/integration-test.test.ts`](../integration-tests/tests/integration-test.test.ts) and passes
 against the live stack.

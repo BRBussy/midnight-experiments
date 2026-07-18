@@ -30,7 +30,7 @@ export circuit ping(): [] {
 }
 ```
 
-Custom structured event (the real pattern — from [`src/token.compact:42-58`](../src/token.compact)):
+Custom structured event (the real pattern — from [`src/token.compact:42-58`](../contract/src/token.compact)):
 
 ```compact
 struct DepositEvent {
@@ -145,7 +145,7 @@ Two verified paths on `PublicDataProvider` (from `@midnight-ntwrk/midnight-js-in
 }
 ```
 
-Working read + decode (from [`tests/integrationTest.test.ts`](../tests/integrationTest.test.ts), the event step):
+Working read + decode (from [`integration-tests/tests/integration-test.test.ts`](../integration-tests/tests/integration-test.test.ts), the event step):
 
 ```ts
 const events = await pdp.queryContractEvents({ contractAddress: tokenAddress, types: ["Misc"] });
